@@ -35,5 +35,6 @@
     </string-array>
 
     <string name="title_activity_create_issue">CreateIssueActivity</string>
+    <string name="log_issue">Log An Issue</string>
 
 </resources>

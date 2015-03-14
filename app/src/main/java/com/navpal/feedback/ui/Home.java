@@ -1,9 +1,12 @@
 package com.navpal.feedback.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.Button;
 
 import com.navpal.feedback.R;
 import com.navpal.feedback.adapters.TicketsPagerAdapter;
@@ -42,7 +45,14 @@ public class Home extends FragmentActivity {
 
             }
         });
-
+        final Button logIssue = (Button)findViewById(R.id.logIssue);
+        logIssue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, CreateIssueActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
