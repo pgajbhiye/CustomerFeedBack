@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".Welcome">
+    android:layout_height="match_parent" tools:context=".Welcome"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
         android:layout_width="fill_parent"
@@ -30,6 +31,15 @@
             android:layout_gravity="left|center_vertical">
 
         </android.support.v4.view.ViewPager>
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/viewpagerindicator"
+            android:padding="10dip"
+            app:radius="6dp"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_gravity="center_horizontal|bottom"
+            />
 
     </FrameLayout>
 </RelativeLayout>

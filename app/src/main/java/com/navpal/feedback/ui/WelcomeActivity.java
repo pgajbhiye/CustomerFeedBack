@@ -11,12 +11,14 @@ import android.widget.ImageView;
 import com.navpal.feedback.R;
 import com.navpal.feedback.adapters.IntroFragmentsAdapter;
 import com.navpal.feedback.listeners.PageChangeListener;
+import com.viewpagerindicator.CirclePageIndicator;
 
 
 public class WelcomeActivity extends FragmentActivity {
 
     private IntroFragmentsAdapter wpfAdapter;
     private ViewPager pager;
+    private CirclePageIndicator circlePageIndicator;
     private ImageView imageBG, imageFG;
 
 
@@ -27,8 +29,13 @@ public class WelcomeActivity extends FragmentActivity {
         pager = (ViewPager) findViewById(R.id.viewpager);
         imageBG = (ImageView) findViewById(R.id.imageViewBg);
         imageFG = (ImageView) findViewById(R.id.imageViewFg);
+
         prepareIntroSlides();
-        PageChangeListener.getInst(getApplicationContext(), pager, imageBG, imageFG);
+
+        //Bind the title indicator to the adapter
+        circlePageIndicator = (CirclePageIndicator)findViewById(R.id.viewpagerindicator);
+        circlePageIndicator.setViewPager(pager);
+        PageChangeListener.getInst(getApplicationContext(), pager, imageBG, imageFG, circlePageIndicator);
     }
 
     private void prepareIntroSlides(){
