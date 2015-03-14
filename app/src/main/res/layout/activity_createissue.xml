@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <AutoCompleteTextView
             android:id="@+id/subject"
             android:layout_width="match_parent"
@@ -30,14 +29,19 @@
             android:paddingRight="10dp"
             android:singleLine="true" />
 
-        <Spinner
-            android:id="@+id/priority"
+        <TextView
+            android:id="@+id/newpriority"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
             android:background="@color/white"
-            android:entries="@array/ticket_priority_value"
-            android:prompt="@string/ticket_priority" />
+            android:gravity="center_vertical"
+            android:hint="Select Priority"
+            android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:singleLine="true" />
 
         <LinearLayout
             android:layout_width="match_parent"

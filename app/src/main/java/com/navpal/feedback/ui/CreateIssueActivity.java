@@ -1,9 +1,12 @@
 package com.navpal.feedback.ui;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
@@ -23,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.navpal.feedback.R;
@@ -41,8 +45,8 @@ public class CreateIssueActivity extends ActionBarActivity {
 
     AutoCompleteTextView subject;
     EditText description;
-    Spinner priority;
     Button submitNewTicket;
+    TextView newpriority;
     ImageButton btnSpeak, btnCapture, btnImgDel;
     SpeechInterpretter speechInterpretter;
     static final int REQ_CODE_SPEECH_INPUT = 100;
@@ -60,8 +64,6 @@ public class CreateIssueActivity extends ActionBarActivity {
         description = (EditText) findViewById(R.id.description);
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
         btnCapture = (ImageButton) findViewById(R.id.btnCapture);
-        priority = (Spinner) findViewById(R.id.priority);
-        priority.setPrompt(getString(R.string.ticket_priority));
 
         imgCaptureCntr = (LinearLayout)findViewById(R.id.imgCaptureCntr);
         imgPrevCntr = (RelativeLayout)findViewById(R.id.imgPrevCntr);
@@ -75,6 +77,33 @@ public class CreateIssueActivity extends ActionBarActivity {
                 if (isValidDetails()) {
                     submitNewTicket();
                 }
+            }
+        });
+
+        final String [] items = getResources().getStringArray(R.array.ticket_priority_value);
+        newpriority = (TextView) findViewById(R.id.newpriority);
+        newpriority.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(CreateIssueActivity.this);
+                builder.setSingleChoiceItems(items, -1,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                newpriority.setText(items[which]);
+                                newpriority.setTextColor(Color.BLACK);
+                            }
+                        });
+                builder.setNegativeButton("cancel",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 
@@ -105,7 +134,7 @@ public class CreateIssueActivity extends ActionBarActivity {
 
     private void submitNewTicket() {
         String ts = subject.getText().toString(),
-                tp = priority.getSelectedItem().toString(),
+                tp = newpriority.getText().toString(),
                 td = description.getText().toString();
 
         Utils.showToast(CreateIssueActivity.this, "Ticket Created successfully");
@@ -120,10 +149,8 @@ public class CreateIssueActivity extends ActionBarActivity {
             return false;
         }
 
-        String tp = priority.getSelectedItem().toString().trim();
-        if (tp.length() == 0 || tp.equalsIgnoreCase("Priority")) {
-            priority.setFocusable(true);
-            priority.setFocusableInTouchMode(true);
+        String tp = newpriority.getText().toString().trim();
+        if (tp.length() == 0 || tp.equalsIgnoreCase("Select Priority")) {
             Utils.showToast(CreateIssueActivity.this, "Enter priority");
             return false;
         }
