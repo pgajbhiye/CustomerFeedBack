@@ -28,6 +28,7 @@
             android:id="@+id/viewpager"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:layout_gravity="left|center_vertical">
 
         </android.support.v4.view.ViewPager>
@@ -39,7 +40,27 @@
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="50dp"
             />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal|bottom"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:background="#99000000"
+            >
+
+        <Button
+            android:id="@+id/getstarted"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Get Started"
+            />
+
+        </LinearLayout>
 
     </FrameLayout>
 </RelativeLayout>
