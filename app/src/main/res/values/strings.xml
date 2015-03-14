@@ -10,6 +10,7 @@
     <string name="speech_prompt">Say something…</string>
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
     <string name="tap_on_mic">Tap on mic to speak</string>
+    <string name="tap_on_cam">Tap on cam to attach image</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="welcome_title_one">24x7 Support</string>
