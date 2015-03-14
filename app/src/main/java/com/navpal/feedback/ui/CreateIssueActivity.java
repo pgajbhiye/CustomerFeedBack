@@ -1,19 +1,33 @@
 package com.navpal.feedback.ui;
 
+import android.content.ActivityNotFoundException;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.net.Uri;
+import android.speech.RecognizerIntent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.navpal.feedback.R;
+import com.navpal.feedback.helpers.SpeechInterpretter;
 import com.navpal.feedback.util.Utils;
 import com.squareup.okhttp.internal.Util;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
 
 public class CreateIssueActivity extends ActionBarActivity {
 
@@ -21,37 +35,52 @@ public class CreateIssueActivity extends ActionBarActivity {
     EditText description;
     Spinner priority;
     Button submitNewTicket;
+    ImageButton btnSpeak;
+    SpeechInterpretter speechInterpretter;
+    final int REQ_CODE_SPEECH_INPUT = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createissue);
-        subject = (AutoCompleteTextView)findViewById(R.id.subject);
-        description = (EditText)findViewById(R.id.description);
+        subject = (AutoCompleteTextView) findViewById(R.id.subject);
+        description = (EditText) findViewById(R.id.description);
+        btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
         priority = (Spinner) findViewById(R.id.priority);
         priority.setPrompt(getString(R.string.ticket_priority));
+
         submitNewTicket = (Button) findViewById(R.id.submitNewTicket);
         submitNewTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                  if(isValidDetails()){
-                      submitNewTicket();
-                  }
+                if (isValidDetails()) {
+                    submitNewTicket();
+                }
             }
         });
+
+        speechInterpretter = new SpeechInterpretter(CreateIssueActivity.this, REQ_CODE_SPEECH_INPUT);
+        btnSpeak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(speechInterpretter.promptSpeechInput(), REQ_CODE_SPEECH_INPUT);
+            }
+        });
+
+
     }
 
-    private void submitNewTicket(){
-           String ts = subject.getText().toString(),
-                   tp = priority.getSelectedItem().toString(),
-                   td = description.getText().toString();
+    private void submitNewTicket() {
+        String ts = subject.getText().toString(),
+                tp = priority.getSelectedItem().toString(),
+                td = description.getText().toString();
 
         Utils.showToast(CreateIssueActivity.this, "Ticket Created successfully");
 
     }
 
-    private boolean isValidDetails(){
-        if(subject.getText().toString().trim().length()==0){
+    private boolean isValidDetails() {
+        if (subject.getText().toString().trim().length() == 0) {
             subject.setFocusable(true);
             subject.setFocusableInTouchMode(true);
             Utils.showToast(CreateIssueActivity.this, "Enter subject");
@@ -59,14 +88,14 @@ public class CreateIssueActivity extends ActionBarActivity {
         }
 
         String tp = priority.getSelectedItem().toString().trim();
-        if(tp.length()==0 || tp.equalsIgnoreCase("Priority")){
+        if (tp.length() == 0 || tp.equalsIgnoreCase("Priority")) {
             priority.setFocusable(true);
             priority.setFocusableInTouchMode(true);
             Utils.showToast(CreateIssueActivity.this, "Enter priority");
             return false;
         }
 
-        if(description.getText().toString().trim().length()==0){
+        if (description.getText().toString().trim().length() == 0) {
             description.setFocusable(true);
             description.setFocusableInTouchMode(true);
             Utils.showToast(CreateIssueActivity.this, "Enter description");
@@ -76,7 +105,66 @@ public class CreateIssueActivity extends ActionBarActivity {
         return true;
     }
 
+    /**
+     * Receiving speech input
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+
+                    //ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    //txtSpeechInput.setText(result.get(0));
+
+                    // the resulting text is in the getExtras:
+                    Bundle bundle = data.getExtras();
+                    ArrayList<String> result = bundle.getStringArrayList(RecognizerIntent.EXTRA_RESULTS);
+                    description.setText(result.get(0));
+
+                    // the recording url is in getData:
+                    Uri audioUri = data.getData();
+                    if (audioUri == null) {
+                        return;
+                    }
+                    ContentResolver contentResolver = getContentResolver();
+                    try {
+                        InputStream filestream = contentResolver.openInputStream(audioUri);
+                        SaveAudioFileToStorage(filestream);
+                    } catch (Exception e) {
+                    }
+                }
+                break;
+            }
+
+        }
+    }
+
+    private void SaveAudioFileToStorage(InputStream filestream) throws Exception {
+        try {
+            final File file = new File(getCacheDir(), System.currentTimeMillis() + ".amr");
+            final OutputStream output = new FileOutputStream(file);
+            try {
+                try {
+                    final byte[] buffer = new byte[1024];
+                    int read;
+
+                    while ((read = filestream.read(buffer)) != -1)
+                        output.write(buffer, 0, read);
+
+                    output.flush();
+                } finally {
+                    output.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } finally {
+            filestream.close();
+        }
+    }
 
 
     @Override

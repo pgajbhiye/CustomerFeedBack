@@ -49,6 +49,10 @@
             android:name=".ui.WelcomeActivity"
             android:label="@string/title_activity_create_issue" >
         </activity>
+        <activity
+            android:name=".ui.Home"
+            android:label="@string/title_activity_home" >
+        </activity>
     </application>
 
 </manifest>
