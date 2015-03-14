@@ -4,16 +4,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.navpal.feedback.fragments.OpenTicketsFragment;
-import com.navpal.feedback.fragments.PendingTicketsFragment;
-import com.navpal.feedback.fragments.SolvedTicketsFragment;
+import com.navpal.feedback.fragments.BaseTicketFragment;
 
 /**
  * Author Pallavi
  */
 public class TicketsPagerAdapter extends FragmentStatePagerAdapter {
 
-    private static final String[] TITLES = {"Open","Pending","Closed"};
+    private static final String[] TITLES = {"Open","Pending","Resolved"};
     public TicketsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -21,11 +19,11 @@ public class TicketsPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int i) {
         switch (i) {
             case 0:
-                 return new OpenTicketsFragment();
+                 return new BaseTicketFragment().setType("open");
             case 1:
-                 return new PendingTicketsFragment();
+                return new BaseTicketFragment().setType("pending");
             case 2:
-                 return new SolvedTicketsFragment();
+                return new BaseTicketFragment().setType("solved");
         }
         return null;
     }
