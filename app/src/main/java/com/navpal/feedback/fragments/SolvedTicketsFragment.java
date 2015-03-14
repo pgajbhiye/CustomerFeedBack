@@ -1,7 +1,5 @@
 package com.navpal.feedback.fragments;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,13 +11,13 @@ import com.navpal.feedback.R;
 /**
  * Author Pallavi
  */
-public class OpenTicketsFragment extends Fragment {
+public class SolvedTicketsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.openticketsfragment, container, false);
+        return inflater.inflate(R.layout.solvedticketsfragment, container, false);
     }
 
 
