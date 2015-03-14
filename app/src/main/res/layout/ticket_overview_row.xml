@@ -5,12 +5,11 @@
     android:background="@color/material_blue_grey_800"
     >
 
-
     <TextView
         android:id="@+id/ticketid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="#1234"
+        android:paddingLeft="10dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
@@ -31,7 +30,6 @@
              android:id="@+id/ticketsubject"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="This is ticket subject"
              android:layout_gravity="left"
              android:layout_marginTop="10dp"
              android:paddingBottom="5dp"
@@ -47,7 +45,6 @@
              android:id="@+id/ticketdescription"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="This is ticket description"
              android:layout_gravity="left"
              android:gravity="center"
              android:singleLine="true"
@@ -63,8 +60,10 @@
         android:id="@+id/ticketstatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="O"
-        android:padding="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
         android:layout_marginTop="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginBottom="10dp"
@@ -72,13 +71,13 @@
         android:layout_alignParentRight="true"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textStyle="bold"
         />
 
     <TextView
         android:id="@+id/ticketdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12/3/2015"
         android:padding="2dp"
         android:layout_marginTop="4dp"
         android:layout_marginLeft="4dp"
