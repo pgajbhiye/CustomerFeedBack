@@ -6,6 +6,7 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -13,10 +14,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        tools:replace="android:theme"
-        >
+        tools:replace="android:theme" >
         <activity
-            android:name="com.navpal.feedback.ui.TicketActivity"
+            android:name=".ui.TicketActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +25,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.navpal.feedback.ui.CreateNewTicketActivity"
+            android:name=".ui.CreateNewTicketActivity"
             android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".ui.AudioFeedbackActivity"
+            android:label="@string/title_activity_audio_feedback" >
         </activity>
     </application>
 

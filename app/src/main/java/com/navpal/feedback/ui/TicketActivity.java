@@ -41,6 +41,15 @@ public class TicketActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        Button launchAudioRecord = (Button)findViewById(R.id.launchAudioRecord);
+        launchAudioRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TicketActivity.this,AudioFeedbackActivity.class);
+                startActivity(intent);
+            }
+        });
       }
 
 
