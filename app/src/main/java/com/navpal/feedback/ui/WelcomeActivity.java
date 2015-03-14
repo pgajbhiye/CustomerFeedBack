@@ -1,11 +1,14 @@
 package com.navpal.feedback.ui;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.navpal.feedback.R;
@@ -29,6 +32,15 @@ public class WelcomeActivity extends FragmentActivity {
         pager = (ViewPager) findViewById(R.id.viewpager);
         imageBG = (ImageView) findViewById(R.id.imageViewBg);
         imageFG = (ImageView) findViewById(R.id.imageViewFg);
+
+        Button getstarted = (Button) findViewById(R.id.getstarted);
+        getstarted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent signupIntent = new Intent(WelcomeActivity.this, GetstartedActivity.class);
+                startActivity(signupIntent);
+            }
+        });
 
         prepareIntroSlides();
 
