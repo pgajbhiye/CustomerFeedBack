@@ -1,9 +1,8 @@
-package com.navpal.feedback;
+package com.navpal.feedback.ui;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
@@ -17,12 +16,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.zendesk.sdk.network.impl.ZendeskConfig;
+import com.navpal.feedback.R;
+import com.navpal.feedback.util.Config;
 
 import java.io.ByteArrayOutputStream;
-
-import feedback.navpal.com.customerfeedback.util.Config;
-import feedback.navpal.com.customerfeedback.util.CreateNewTicketActivity;
 
 
 public class TicketActivity extends Activity {
@@ -34,7 +31,7 @@ public class TicketActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticket);
-        //
+
         //captureImage();
         Button button = (Button)findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -44,8 +41,7 @@ public class TicketActivity extends Activity {
                 startActivity(intent);
             }
         });
-
-        }
+      }
 
 
     @Override
