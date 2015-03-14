@@ -9,4 +9,17 @@
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
     <string name="tap_on_mic">Tap on mic to speak</string>
 
+    <string name="welcome_title_one">24x7 Support</string>
+    <string name="welcome_caption_one">Our skilled support team will help resolve any technical problem, giving you a clear and simple solution.</string>
+
+    <string name="welcome_title_two">Need Help?</string>
+    <string name="welcome_caption_two">Friendly and prompt support you can depend on!</string>
+
+    <string name="welcome_title_three">Have Question?</string>
+    <string name="welcome_caption_three">An online ticket system for submitting and tracking your requests</string>
+
+    <string name="welcome_title_four">100% Satisfaction</string>
+    <string name="welcome_caption_four">Start submitting question, problem and incident today</string>
+
+
 </resources>
