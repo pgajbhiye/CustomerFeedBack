@@ -10,10 +10,9 @@
         android:layout_margin="5dp"
         android:layout_weight="0.95"
         android:cacheColorHint="#0000"
-        android:clipToPadding="true"
-        android:divider="@android:color/transparent"
+         android:divider="@android:color/transparent"
         android:dividerHeight="10.0sp"
-        android:scrollbars="none"
+        android:scrollbars="vertical"
         android:soundEffectsEnabled="true" >
     </ListView>
 

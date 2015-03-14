@@ -43,7 +43,7 @@ public class BaseTicketsAdapter extends BaseAdapter {
             inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null)
-            convertView = inflater.inflate(R.layout.ticket_overview_row, null);
+            convertView = inflater.inflate(R.layout.ticket_overview_row, parent, false);
 
         return convertView;
     }
