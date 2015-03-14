@@ -10,7 +10,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-
     <AutoCompleteTextView
         android:id="@+id/subject"
         android:layout_width="match_parent"
@@ -20,9 +19,10 @@
         android:hint="@string/ticket_subject"
         android:inputType="textPersonName"
         android:maxLines="1"
+        android:imeOptions="actionNext"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:singleLine="true" />
+         android:singleLine="true" />
 
     <Spinner
         android:id="@+id/priority"
@@ -61,13 +61,13 @@
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:gravity="top"
         android:background="@color/white"
         android:ems="20"
         android:hint="@string/ticket_description"
         android:inputType="textMultiLine"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" />
-
 
     <Button
         android:id="@+id/submitNewTicket"
@@ -76,6 +76,5 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="15dp"
         android:text="@string/ticket_create" />
-
 
 </LinearLayout>
