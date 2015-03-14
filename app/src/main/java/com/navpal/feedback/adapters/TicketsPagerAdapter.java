@@ -13,6 +13,7 @@ import com.navpal.feedback.fragments.SolvedTicketsFragment;
  */
 public class TicketsPagerAdapter extends FragmentStatePagerAdapter {
 
+    private static final String[] TITLES = {"Open","Pending","Closed"};
     public TicketsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -31,6 +32,11 @@ public class TicketsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return TITLES.length;
     }
+
+    @Override
+     public CharSequence getPageTitle(int position) {
+         return TITLES[position % TITLES.length].toUpperCase();
+     }
 }
