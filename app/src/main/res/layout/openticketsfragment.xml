@@ -3,10 +3,18 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/open"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="open tickets fragment" />
+    <ListView
+        android:id="@+id/ticketlist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:layout_weight="0.95"
+        android:cacheColorHint="#0000"
+        android:clipToPadding="true"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"
+        android:scrollbars="none"
+        android:soundEffectsEnabled="true" >
+    </ListView>
 
 </LinearLayout>

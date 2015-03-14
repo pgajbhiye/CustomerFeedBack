@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 
 import com.navpal.feedback.R;
 import com.navpal.feedback.adapters.TicketsPagerAdapter;
+import com.viewpagerindicator.TabPageIndicator;
 
 /**
  * Author Pallavi
@@ -20,7 +21,12 @@ public class Home extends FragmentActivity {
 
         ViewPager ticketsPager = (ViewPager)findViewById(R.id.ticketspager);
         ticketsPager.setAdapter(new TicketsPagerAdapter(getSupportFragmentManager()));
-        ticketsPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+        //Bind the title indicator to the adapter
+        TabPageIndicator titleIndicator = (TabPageIndicator)findViewById(R.id.tabindicator);
+        titleIndicator.setViewPager(ticketsPager);
+
+        titleIndicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
