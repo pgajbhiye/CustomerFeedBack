@@ -43,7 +43,7 @@
         <activity
             android:name=".ui.CreateIssueActivity"
             android:label="@string/title_activity_getstarted"
-            android:windowSoftInputMode="adjustResize|stateVisible" >
+            android:windowSoftInputMode="adjustNothing" >
         </activity>
         <activity
             android:name=".ui.WelcomeActivity"
