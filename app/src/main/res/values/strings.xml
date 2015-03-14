@@ -29,7 +29,6 @@
     <string name="title_activity_home">My Tickets</string>
 
     <string-array name="ticket_priority_value">
-        <item>Priority</item>
         <item>Low</item>
         <item>Normal</item>
         <item>High</item>
