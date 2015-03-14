@@ -29,7 +29,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="new ticket"
+        />
 
+    <Button
+        android:id="@+id/fetch"
+        android:layout_below="@id/newticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="fetch"
         />
 
 </RelativeLayout>
