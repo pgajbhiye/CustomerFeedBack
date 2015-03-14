@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@color/material_blue_grey_800"
+    >
+
+
+    <TextView
+        android:id="@+id/ticketid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#1234"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        />
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical"
+         android:layout_alignParentLeft="true"
+         android:layout_centerVertical="true"
+         android:layout_marginLeft="50dp"
+         android:paddingLeft="20dp"
+         android:paddingRight="20dp"
+         >
+
+         <TextView
+             android:id="@+id/ticketsubject"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="This is ticket subject"
+             android:layout_gravity="left"
+             android:layout_marginTop="10dp"
+             android:paddingBottom="5dp"
+             android:gravity="center"
+             android:singleLine="true"
+             android:marqueeRepeatLimit="marquee_forever"
+             android:focusable="true"
+             android:focusableInTouchMode="true"
+             android:ellipsize="marquee"
+             />
+
+         <TextView
+             android:id="@+id/ticketdescription"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="This is ticket description"
+             android:layout_gravity="left"
+             android:gravity="center"
+             android:singleLine="true"
+             android:marqueeRepeatLimit="marquee_forever"
+             android:focusable="true"
+             android:focusableInTouchMode="true"
+             android:ellipsize="marquee"
+             />
+
+         </LinearLayout>
+
+    <TextView
+        android:id="@+id/ticketstatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="O"
+        android:padding="5dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/ticketdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12/3/2015"
+        android:padding="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:background="@color/white"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+</RelativeLayout>
