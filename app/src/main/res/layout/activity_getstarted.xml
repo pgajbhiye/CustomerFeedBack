@@ -20,16 +20,6 @@
         android:layout_marginBottom="8dp"
         android:visibility="gone" />
 
-    <!-- <ScrollView
-         android:id="@+id/login_form"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_centerVertical="true"
-         android:layout_marginLeft="20dp"
-         android:layout_marginRight="20dp"
-         android:padding="20dp"
-         android:background="#99000000">-->
-
     <LinearLayout
         android:id="@+id/email_login_form"
         android:layout_width="match_parent"
@@ -88,8 +78,6 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-
-    <!-- </ScrollView>-->
 
 </RelativeLayout>
 

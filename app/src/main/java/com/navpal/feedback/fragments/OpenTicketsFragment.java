@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.navpal.feedback.R;
 import com.navpal.feedback.adapters.BaseTicketsAdapter;
@@ -30,15 +31,19 @@ public class OpenTicketsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.openticketsfragment, container, false);
+        View view = inflater.inflate(R.layout.openticketsfragment, container, false);
         final ListView listView =(ListView)view.findViewById(R.id.ticketlist);
+        final TextView msg = (TextView)view.findViewById(R.id.noTicket);
 
         zendConnector = new ZendeskConnector().initZendeskSdk(getActivity());
 
         zendConnector.fetchTicketsByStatus("open", new ZendeskCallback<List<Request>>() {
             @Override
             public void onSuccess(List<Request> result) {
-                listView.setAdapter(new BaseTicketsAdapter(getActivity(),result));
+                if (result!=null && result.size() > 0)
+                    listView.setAdapter(new BaseTicketsAdapter(getActivity(), result));
+                else
+                    msg.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -49,4 +54,8 @@ public class OpenTicketsFragment extends Fragment {
         return view;
     }
 
+    private void showNoTicketsMessage(){
+
+
+    }
 }
