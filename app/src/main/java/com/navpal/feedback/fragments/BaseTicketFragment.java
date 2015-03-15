@@ -27,6 +27,8 @@ public class BaseTicketFragment extends Fragment {
     ZendeskConnector zendConnector;
 
     public String ticketType;
+    private ListView listView;
+    private TextView msg;
 
     public BaseTicketFragment(){
         this.ticketType = "open";
@@ -43,11 +45,17 @@ public class BaseTicketFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.openticketsfragment, container, false);
-        final ListView listView =(ListView)view.findViewById(R.id.ticketlist);
-        final TextView msg = (TextView)view.findViewById(R.id.noTicket);
+        listView =(ListView)view.findViewById(R.id.ticketlist);
+        msg = (TextView)view.findViewById(R.id.noTicket);
 
         zendConnector = new ZendeskConnector(getActivity());
 
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         zendConnector.fetchTicketsByStatus(this.ticketType, new ZendeskCallback<List<Request>>() {
             @Override
             public void onSuccess(List<Request> result) {
@@ -64,7 +72,5 @@ public class BaseTicketFragment extends Fragment {
                 msg.setVisibility(View.VISIBLE);
             }
         });
-        return view;
     }
-
 }
