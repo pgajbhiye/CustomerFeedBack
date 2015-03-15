@@ -42,7 +42,7 @@ public class Utils {
     }
 
     public static  String formatDate(Date date){
-        SimpleDateFormat format = new SimpleDateFormat("dd MMM yy");
+        SimpleDateFormat format = new SimpleDateFormat("dd MMM yyyy");
         String prettyDate = format.format(date);
         return prettyDate;
 
