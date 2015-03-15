@@ -35,7 +35,7 @@ public class OpenTicketsFragment extends Fragment {
         final ListView listView =(ListView)view.findViewById(R.id.ticketlist);
         final TextView msg = (TextView)view.findViewById(R.id.noTicket);
 
-        zendConnector = new ZendeskConnector().initZendeskSdk(getActivity());
+        //zendConnector = new ZendeskConnector().initZendeskSdk(getActivity());
 
         zendConnector.fetchTicketsByStatus("open", new ZendeskCallback<List<Request>>() {
             @Override

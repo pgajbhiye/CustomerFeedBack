@@ -136,7 +136,7 @@ public class CreateIssueActivity extends ActionBarActivity {
             }
         });
 
-        zendeskConnector = new ZendeskConnector().initZendeskSdk(CreateIssueActivity.this);
+        zendeskConnector = new ZendeskConnector(CreateIssueActivity.this);//.initZendeskSdk(CreateIssueActivity.this);
 
     }
 
