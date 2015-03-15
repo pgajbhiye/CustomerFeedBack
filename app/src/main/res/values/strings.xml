@@ -26,7 +26,7 @@
     <string name="ticket_priority">Priority:</string>
     <string name="ticket_description">Description</string>
     <string name="ticket_create">Submit</string>
-    <string name="title_activity_home">My Tickets</string>
+    <string name="title_activity_home">Customer FeedBack</string>
 
     <string-array name="ticket_priority_value">
         <item>Low</item>
