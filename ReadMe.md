@@ -98,4 +98,6 @@ How to Use
 
 Known Issues
 ------------
+- Cross device support, Cross app support, Re-install support can not be implemented as we were using anonymous authentication for zendesk
 - List may take some time to load tickets from server. No progress indicator implemented.
+
