@@ -98,4 +98,4 @@ How to Use
 
 Known Issues
 ------------
-- Applicaton may crash for if switched between tab bars while date getting loaded
+- List may take some time to load tickets from server. No progress indicator implemented.
