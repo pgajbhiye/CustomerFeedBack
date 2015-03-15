@@ -1,11 +1,13 @@
 package com.navpal.feedback.fragments;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -47,8 +49,16 @@ public class BaseTicketFragment extends Fragment {
         View view = inflater.inflate(R.layout.openticketsfragment, container, false);
         listView =(ListView)view.findViewById(R.id.ticketlist);
         msg = (TextView)view.findViewById(R.id.noTicket);
-
         zendConnector = new ZendeskConnector(getActivity());
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Request eachTicket = (Request)parent.getItemAtPosition(position);
+                buildTicketDetailsView(eachTicket);
+
+            }
+        });
 
         return view;
     }
@@ -60,8 +70,9 @@ public class BaseTicketFragment extends Fragment {
             @Override
             public void onSuccess(List<Request> result) {
                 Log.d(BaseTicketFragment.class.getName(), "result"+ result.size());
-                if (result!=null && result.size() > 0)
+                if (result!=null && result.size() > 0) {
                     listView.setAdapter(new BaseTicketsAdapter(getActivity(), result));
+                }
                 else
                     msg.setVisibility(View.VISIBLE);
             }
@@ -72,5 +83,48 @@ public class BaseTicketFragment extends Fragment {
                 msg.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+
+    private void buildTicketDetailsView(Request ticket){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.ticketdetails, null);
+
+        TextView detailsubject = (TextView)dialogView.findViewById(R.id.detailsubject);
+        detailsubject.setText("Subject :");
+        TextView detailsubjectVal = (TextView)dialogView.findViewById(R.id.detailsubjectVal);
+        detailsubjectVal.setText(ticket.getSubject());
+
+
+        TextView detaildescription = (TextView)dialogView.findViewById(R.id.detaildescription);
+        detaildescription.setText("Description :");
+        TextView detaildescriptionVal = (TextView)dialogView.findViewById(R.id.detaildescriptionVal);
+        detaildescriptionVal.setText(ticket.getDescription());
+
+        TextView detaildatecreated = (TextView)dialogView.findViewById(R.id.detaildatecreated);
+        detaildatecreated.setText("Ticket Created :");
+        TextView detaildatecreatedVal = (TextView)dialogView.findViewById(R.id.detaildatecreatedVal);
+        detaildatecreatedVal.setText(ticket.getCreatedAt().toString());
+
+        TextView detailstatus = (TextView)dialogView.findViewById(R.id.detailstatus);
+        detailstatus.setText("Ticket Status :");
+        TextView detailstatusVal = (TextView)dialogView.findViewById(R.id.detailstatusVal);
+        if(ticket.getStatus()!=null && !ticket.getStatus().isEmpty())
+            detailstatusVal.setText(ticket.getStatus());
+        else
+            detailstatusVal.setText("Nil");
+
+        TextView detailpriority = (TextView)dialogView.findViewById(R.id.detailpriority);
+        detailpriority.setText("Ticket Priority :");
+        TextView detailpriorityVal = (TextView)dialogView.findViewById(R.id.detailpriorityVal);
+        if(ticket.getPriority()!=null && !ticket.getPriority().isEmpty())
+             detailpriorityVal.setText(ticket.getPriority());
+        else
+            detailpriorityVal.setText("Nil");
+
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.show();
+
     }
 }

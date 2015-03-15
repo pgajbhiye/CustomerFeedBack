@@ -13,6 +13,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         />
 
      <LinearLayout
@@ -38,9 +40,10 @@
              android:gravity="center"
              android:singleLine="true"
              android:marqueeRepeatLimit="marquee_forever"
-             android:focusable="true"
-             android:focusableInTouchMode="true"
+             android:focusable="false"
+             android:focusableInTouchMode="false"
              android:ellipsize="marquee"
+
              />
 
          <TextView
@@ -52,8 +55,8 @@
              android:gravity="center"
              android:singleLine="true"
              android:marqueeRepeatLimit="marquee_forever"
-             android:focusable="true"
-             android:focusableInTouchMode="true"
+             android:focusable="false"
+             android:focusableInTouchMode="false"
              android:ellipsize="marquee"
              />
 
@@ -107,6 +110,8 @@
         android:layout_gravity="right"
         android:gravity="center"
         android:textStyle="bold"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         />
 
 </RelativeLayout>
