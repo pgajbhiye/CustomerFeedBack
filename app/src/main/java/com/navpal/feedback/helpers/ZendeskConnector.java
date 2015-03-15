@@ -21,6 +21,7 @@ import com.zendesk.sdk.network.impl.ZendeskCallback;
 import com.zendesk.sdk.network.impl.ZendeskConfig;
 import com.zendesk.sdk.network.impl.ZendeskRequestProvider;
 import com.zendesk.sdk.network.impl.ZendeskUploadProvider;
+import com.zendesk.sdk.util.StringUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -35,9 +36,9 @@ public class ZendeskConnector {
     RequestProvider provider;
     UserDetails userDetails;
 
-    public ZendeskConnector initZendeskSdk(Context context){
+    public static void initZendeskSdk(Context context){
+        UserDetails currentUser = Utils.getUser(context);
         ZendeskConfig.INSTANCE.init(context, Config.SUB_DOMAIN, Config.APP_ID, Config.OAUTH_ID);
-        // Sets the configuration used by the Contact Zendesk component
         ZendeskConfig.INSTANCE.setContactConfiguration(new BaseZendeskFeedbackConfiguration(){
 
             @Override
@@ -45,26 +46,20 @@ public class ZendeskConnector {
                 return "Raise Your Ticket";
             }
         });
-        provider = new ZendeskRequestProvider();
-        userDetails = Utils.getUser(context);
-        zendeskUser();
-        return this;
-    }
-
-    private void zendeskUser(){
-
-         Identity anonymousIdentity = new AnonymousIdentity.Builder()
-                .withEmailIdentifier(userDetails.getEmailId())
-                .withExternalIdentifier("")
-                .withNameIdentifier(userDetails.getName())
+        Identity anonymousIdentity = new AnonymousIdentity.Builder()
+                .withEmailIdentifier(currentUser.getEmailId())
+                .withNameIdentifier(currentUser.getName())
                 .build();
 
         ZendeskConfig.INSTANCE.setIdentity(anonymousIdentity);
     }
 
+    public ZendeskConnector(Context context){
+        provider = new ZendeskRequestProvider();
+        userDetails = Utils.getUser(context);
+    }
 
     public void fetchTicketsByStatus(String status, ZendeskCallback callback){
-        //String statuses = StringUtils.toCsvString("pending", "hold");
         provider.getRequests(status, callback);
     }
 

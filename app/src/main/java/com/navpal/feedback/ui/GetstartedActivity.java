@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.navpal.feedback.R;
 import com.navpal.feedback.helpers.UserDetails;
+import com.navpal.feedback.helpers.ZendeskConnector;
 import com.navpal.feedback.util.Utils;
 import com.squareup.okhttp.internal.Util;
 
@@ -65,7 +66,7 @@ public class GetstartedActivity extends Activity {
                     userDetails.setEmailId(email.getText().toString());
                     userDetails.setFirstTime(false);
                     Utils.saveUser(getApplicationContext(), userDetails);
-
+                    ZendeskConnector.initZendeskSdk(getApplicationContext());
                     Intent intent = new Intent(GetstartedActivity.this, Home.class);
                     startActivity(intent);
                 } else {

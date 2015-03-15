@@ -2,6 +2,7 @@ package com.navpal.feedback.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,11 +46,15 @@ public class BaseTicketFragment extends Fragment {
         final ListView listView =(ListView)view.findViewById(R.id.ticketlist);
         final TextView msg = (TextView)view.findViewById(R.id.noTicket);
 
-        zendConnector = new ZendeskConnector().initZendeskSdk(getActivity());
+        Log.d(BaseTicketFragment.class.getName(), "Naveen Fetching ticjets");
+        zendConnector = new ZendeskConnector(getActivity());
 
+        Log.d(BaseTicketFragment.class.getName(), "Naveen Fetching ticjets 2");
         zendConnector.fetchTicketsByStatus(this.ticketType, new ZendeskCallback<List<Request>>() {
             @Override
             public void onSuccess(List<Request> result) {
+                Log.d(BaseTicketFragment.class.getName(), "Naveen 3 Fetching ticjets 2");
+                Log.d(BaseTicketFragment.class.getName(), "result"+ result.size());
                 if (result!=null && result.size() > 0)
                     listView.setAdapter(new BaseTicketsAdapter(getActivity(), result));
                 else
