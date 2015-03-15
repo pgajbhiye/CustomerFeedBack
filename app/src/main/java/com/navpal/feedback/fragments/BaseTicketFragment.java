@@ -46,14 +46,11 @@ public class BaseTicketFragment extends Fragment {
         final ListView listView =(ListView)view.findViewById(R.id.ticketlist);
         final TextView msg = (TextView)view.findViewById(R.id.noTicket);
 
-        Log.d(BaseTicketFragment.class.getName(), "Naveen Fetching ticjets");
         zendConnector = new ZendeskConnector(getActivity());
 
-        Log.d(BaseTicketFragment.class.getName(), "Naveen Fetching ticjets 2");
         zendConnector.fetchTicketsByStatus(this.ticketType, new ZendeskCallback<List<Request>>() {
             @Override
             public void onSuccess(List<Request> result) {
-                Log.d(BaseTicketFragment.class.getName(), "Naveen 3 Fetching ticjets 2");
                 Log.d(BaseTicketFragment.class.getName(), "result"+ result.size());
                 if (result!=null && result.size() > 0)
                     listView.setAdapter(new BaseTicketsAdapter(getActivity(), result));
@@ -63,7 +60,8 @@ public class BaseTicketFragment extends Fragment {
 
             @Override
             public void onError(ErrorResponse error) {
-                Utils.showToast(getActivity(), "Unable to fetch tickets. Please try after sometime");
+                //Utils.showToast(getActivity(), "Unable to fetch tickets. Please try after sometime");
+                msg.setVisibility(View.VISIBLE);
             }
         });
         return view;
