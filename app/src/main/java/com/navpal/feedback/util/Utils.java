@@ -1,10 +1,13 @@
 package com.navpal.feedback.util;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.widget.Toast;
+
+import com.navpal.feedback.helpers.UserDetails;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
@@ -55,5 +58,22 @@ public class Utils {
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
+    }
+
+    public static void saveUser(Context inContext, UserDetails userDetails){
+        SharedPreferences.Editor editor = inContext.getSharedPreferences(Config.APP_PREFS_NAME, inContext.MODE_PRIVATE).edit();
+        editor.putString("name", userDetails.getName());
+        editor.putString("emailId", userDetails.getEmailId());
+        editor.putBoolean("firstTime", userDetails.isFirstTime());
+        editor.commit();
+    }
+
+    public static UserDetails getUser(Context inContext){
+        SharedPreferences prefs = inContext.getSharedPreferences(Config.APP_PREFS_NAME, inContext.MODE_PRIVATE);
+        UserDetails userDetails = new UserDetails();
+        userDetails.setName(prefs.getString("name", null));
+        userDetails.setEmailId(prefs.getString("emailId", null));
+        userDetails.setFirstTime(prefs.getBoolean("firstTime", true));
+        return userDetails;
     }
 }

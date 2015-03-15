@@ -13,8 +13,11 @@ import android.widget.ImageView;
 
 import com.navpal.feedback.R;
 import com.navpal.feedback.adapters.IntroFragmentsAdapter;
+import com.navpal.feedback.helpers.UserDetails;
 import com.navpal.feedback.listeners.PageChangeListener;
+import com.navpal.feedback.util.Utils;
 import com.viewpagerindicator.CirclePageIndicator;
+import com.zendesk.sdk.model.User;
 
 
 public class WelcomeActivity extends FragmentActivity {
@@ -28,6 +31,17 @@ public class WelcomeActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        UserDetails userDetails = Utils.getUser(getApplicationContext());
+
+        if(!userDetails.isFirstTime()){
+            showLoginScreen();
+            return;
+        }
+        userDetails.setFirstTime(false);
+        Utils.saveUser(getApplicationContext(), userDetails);
+
+
         setContentView(R.layout.activity_welcome);
         pager = (ViewPager) findViewById(R.id.viewpager);
         imageBG = (ImageView) findViewById(R.id.imageViewBg);
@@ -37,8 +51,7 @@ public class WelcomeActivity extends FragmentActivity {
         getstarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signupIntent = new Intent(WelcomeActivity.this, GetstartedActivity.class);
-                startActivity(signupIntent);
+                showLoginScreen();
             }
         });
 
@@ -48,6 +61,11 @@ public class WelcomeActivity extends FragmentActivity {
         circlePageIndicator = (CirclePageIndicator)findViewById(R.id.viewpagerindicator);
         circlePageIndicator.setViewPager(pager);
         PageChangeListener.getInst(getApplicationContext(), pager, imageBG, imageFG, circlePageIndicator);
+    }
+
+    private void showLoginScreen(){
+        Intent getStartIntent = new Intent(WelcomeActivity.this, GetstartedActivity.class);
+        startActivity(getStartIntent);
     }
 
     private void prepareIntroSlides(){

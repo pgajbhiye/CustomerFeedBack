@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.navpal.feedback.R;
+import com.navpal.feedback.helpers.UserDetails;
 import com.navpal.feedback.util.Utils;
 import com.squareup.okhttp.internal.Util;
 
@@ -24,16 +25,23 @@ public class GetstartedActivity extends Activity {
     AutoCompleteTextView email;
     EditText password;
     Button signIn;
+    UserDetails userDetails;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_getstarted);
-        fullName = (AutoCompleteTextView)findViewById(R.id.fullname);
-        email = (AutoCompleteTextView)findViewById(R.id.email);
-        password = (EditText)findViewById(R.id.password); //Not using right now
-        signIn = (Button)findViewById(R.id.email_sign_in_button);
+        fullName = (AutoCompleteTextView) findViewById(R.id.fullname);
+        email = (AutoCompleteTextView) findViewById(R.id.email);
+        password = (EditText) findViewById(R.id.password); //Not using right now
+        signIn = (Button) findViewById(R.id.email_sign_in_button);
+        userDetails = Utils.getUser(getApplicationContext());
+
+        if (userDetails.isValid()) {
+            fullName.setText(userDetails.getName());
+            email.setText(userDetails.getEmailId());
+        }
 
         email.setOnEditorActionListener(new EditText.OnEditorActionListener() {
 
@@ -50,12 +58,18 @@ public class GetstartedActivity extends Activity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(fullName.toString()!=null && !fullName.toString().isEmpty() &&
-                        Utils.isValidEmail(email.getText().toString())){
-                        Intent intent = new Intent(GetstartedActivity.this,Home.class);
-                        startActivity(intent);
-                }else{
-                    Utils.showToast(GetstartedActivity.this,"Please Enter valid details");
+                if (fullName.toString() != null && !fullName.toString().isEmpty() &&
+                        Utils.isValidEmail(email.getText().toString())) {
+
+                    userDetails.setName(fullName.getText().toString());
+                    userDetails.setEmailId(email.getText().toString());
+                    userDetails.setFirstTime(false);
+                    Utils.saveUser(getApplicationContext(), userDetails);
+
+                    Intent intent = new Intent(GetstartedActivity.this, Home.class);
+                    startActivity(intent);
+                } else {
+                    Utils.showToast(GetstartedActivity.this, "Please Enter valid details");
                 }
             }
         });
