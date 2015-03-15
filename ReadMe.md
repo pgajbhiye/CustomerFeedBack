@@ -1,4 +1,4 @@
-Customer Feedback
+Customer Feedback - cDesk
 =====================
 
 This application is focused to avoid long waiting calls to customer care tollfree line and submit and track issued faced by cutsomers directly online. This application enables customers to track issues and send feedback in realtime to get satisfactory resolution from customer help desk.
