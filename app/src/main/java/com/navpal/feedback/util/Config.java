@@ -5,7 +5,7 @@ package com.navpal.feedback.util;
  */
 public class Config {
 
-    public static final String  SUB_DOMAIN = "";
+    public static final String  SUB_DOMAIN = "https://navpal.zendesk.com";
     public static final int THUMBNAIL_W = 90;
     public static final int THUMBNAIL_H = 90;
 

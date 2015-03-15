@@ -33,9 +33,10 @@ public class ZendeskConnector {
 
 
     RequestProvider provider;
+    UserDetails userDetails;
 
     public ZendeskConnector initZendeskSdk(Context context){
-        ZendeskConfig.INSTANCE.init(context, "https://navpal.zendesk.com", Config.APP_ID, Config.OAUTH_ID);
+        ZendeskConfig.INSTANCE.init(context, Config.SUB_DOMAIN, Config.APP_ID, Config.OAUTH_ID);
         // Sets the configuration used by the Contact Zendesk component
         ZendeskConfig.INSTANCE.setContactConfiguration(new BaseZendeskFeedbackConfiguration(){
 
@@ -45,15 +46,17 @@ public class ZendeskConnector {
             }
         });
         provider = new ZendeskRequestProvider();
+        userDetails = Utils.getUser(context);
         zendeskUser();
         return this;
     }
 
     private void zendeskUser(){
+
          Identity anonymousIdentity = new AnonymousIdentity.Builder()
-                .withEmailIdentifier("pallavi.mp88@gmail.com")
-                .withExternalIdentifier("pallavi_id")
-                .withNameIdentifier("Pallavi G")
+                .withEmailIdentifier(userDetails.getEmailId())
+                .withExternalIdentifier(userDetails.getEmailId())
+                .withNameIdentifier(userDetails.getName())
                 .build();
 
         ZendeskConfig.INSTANCE.setIdentity(anonymousIdentity);
