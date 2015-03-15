@@ -43,17 +43,25 @@ Git Repo
 ----
 [https://github.com/pgajbhiye/CustomerFeedBack](https://github.com/pgajbhiye/CustomerFeedBack)
 
+Contributors
+--
+**Pallavi Gajbhiye** [http://in.linkedin.com/pub/pallavi-gajbhiye/29/442/608](http://in.linkedin.com/pub/pallavi-gajbhiye/29/442/608)
+
+**Naveen Ithappu** [https://www.linkedin.com/pub/naveen-ithappu/8/867/517?trk=pub-pbmap](https://www.linkedin.com/pub/naveen-ithappu/8/867/517?trk=pub-pbmap)
+
 Zendesk Credentials
 --
 Login to zendesk sub domain to manage and update issues posted by users throgh mobile application
 
-- URL: [https://navpal.zendesk.com/access/unauthenticated#login](https://navpal.zendesk.com/access/unauthenticated#login)
-- Email Id: socialdevcode@gmail.com
-- Password: code@123
+- URL: [https://naveenithappu.zendesk.com/access/unauthenticated#login](https://naveenithappu.zendesk.com/access/unauthenticated#login)
+- **Email Id**: naveenithappu@gmail.com
+- **Password**: mindtree
 
-Known Issues
-------------
-- Applicaton may crash for if switched between tab bars while date getting loaded
+App Credentials
+--
+1. Name: testnav, Email: naveen@gmail.com
+2. Name: Pallavi G, Email: pallavi.mp88@gmail.com
+3. Or you can any Name or Email Id to test new user creation
 
 How to build
 ------------
@@ -62,3 +70,32 @@ How to build
 - Build using Run configuration option in IDE
 
 > *Requires Android Studio IDE and gradle pre installed in system to build source. * 
+
+
+How to Use
+--
+
+**Testing Ticket Creation and Load**
+
+- After installing application in mobile, lauch application
+- Login with any of the test accounts metioned above
+- Application will load all your open tickets
+- You can use **LOG AN ISSUE** button at the bottom of the list view to post new ticket
+- In **Create Issue** screen you can Record voice or type issue log and submit
+- After New ticket is created, App will load the newly created tickt under **Open** tickets tab view
+- You can switch between the tabs in tabb view screen to filter tickets by state
+
+**Testing Ticket updates for server**
+
+- Login to **zenddesk** wbsite using the credentials listed above
+- Update the ticket created in above scenario with status as pending
+- Come back to Mobile App
+- Click on **Pending** tab in mobile app
+- Updated tick will now list in this tab
+- Using **zenddesk** wbsite, update more details such as Type, Status, Priority etc.
+- Observe the same changes refected in app for the selected tickt
+
+
+Known Issues
+------------
+- Applicaton may crash for if switched between tab bars while date getting loaded

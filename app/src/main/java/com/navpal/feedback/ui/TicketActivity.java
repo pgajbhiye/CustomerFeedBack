@@ -51,7 +51,7 @@ public class TicketActivity extends Activity {
             }
         });
 
-        Button launchhome = (Button)findViewById(R.id.launchhome);
+        /*Button launchhome = (Button)findViewById(R.id.launchhome);
         launchhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +59,7 @@ public class TicketActivity extends Activity {
                 Intent intent = new Intent(TicketActivity.this,Home.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
       }
 
