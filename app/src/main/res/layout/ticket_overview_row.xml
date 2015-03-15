@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="90dp"
-    android:background="@color/material_blue_grey_800"
+    android:background="#b9def0"
     >
 
     <TextView
@@ -21,7 +21,7 @@
          android:orientation="vertical"
          android:layout_alignParentLeft="true"
          android:layout_centerVertical="true"
-         android:layout_marginLeft="50dp"
+         android:layout_marginLeft="10dp"
          android:paddingLeft="20dp"
          android:paddingRight="20dp"
          >
@@ -56,8 +56,40 @@
 
          </LinearLayout>
 
+    <!--<TextView
+    android:id="@+id/ticketstatus"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginBottom="10dp"
+    android:background="@color/white"
+    android:layout_alignParentRight="true"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:textStyle="bold"
+    />-->
+
+    <!--<TextView
+        android:id="@+id/ticketdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:background="@color/white"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+-->
+
     <TextView
-        android:id="@+id/ticketstatus"
+        android:id="@+id/ticketdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
@@ -69,22 +101,9 @@
         android:layout_marginBottom="10dp"
         android:background="@color/white"
         android:layout_alignParentRight="true"
-        android:layout_gravity="center"
+        android:layout_gravity="right"
         android:gravity="center"
         android:textStyle="bold"
-        />
-
-    <TextView
-        android:id="@+id/ticketdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="2dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="4dp"
-        android:background="@color/white"
-        android:layout_alignParentLeft="true"
-        android:layout_gravity="center"
-        android:gravity="center"
         />
 
 </RelativeLayout>

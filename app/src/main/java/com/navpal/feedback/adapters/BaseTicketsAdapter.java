@@ -60,7 +60,7 @@ public class BaseTicketsAdapter extends BaseAdapter {
             holder.ticketno = (TextView) rowview.findViewById(R.id.ticketid);
             holder.subject = (TextView) rowview.findViewById(R.id.ticketsubject);
             holder.description = (TextView) rowview.findViewById(R.id.ticketdescription);
-            holder.status = (TextView) rowview.findViewById(R.id.ticketstatus);
+            //holder.status = (TextView) rowview.findViewById(R.id.ticketstatus);
             rowview.setTag(holder);
         }else{
             holder = (ViewHolder) rowview.getTag();
@@ -71,7 +71,7 @@ public class BaseTicketsAdapter extends BaseAdapter {
         holder.ticketno.setText(ticket.getPriority());
         holder.subject.setText(ticket.getSubject());
         holder.description.setText(ticket.getDescription());
-        holder.status.setText(Utils.trimStatus(ticket.getStatus()));
+       //holder.status.setText(Utils.trimStatus(ticket.getStatus()));
 
         return rowview;
     }
