@@ -31,9 +31,12 @@ import android.widget.Toast;
 
 import com.navpal.feedback.R;
 import com.navpal.feedback.helpers.SpeechInterpretter;
+import com.navpal.feedback.helpers.ZendeskConnector;
 import com.navpal.feedback.util.Config;
 import com.navpal.feedback.util.Utils;
 import com.squareup.okhttp.internal.Util;
+import com.zendesk.sdk.model.network.ErrorResponse;
+import com.zendesk.sdk.network.impl.ZendeskCallback;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -55,6 +58,8 @@ public class CreateIssueActivity extends ActionBarActivity {
     LinearLayout imgCaptureCntr;
     RelativeLayout imgPrevCntr;
     ImageView imgThumb;
+
+    ZendeskConnector zendeskConnector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,6 +135,8 @@ public class CreateIssueActivity extends ActionBarActivity {
             }
         });
 
+        zendeskConnector = new ZendeskConnector().initZendeskSdk(CreateIssueActivity.this);
+
     }
 
     private void submitNewTicket() {
@@ -137,7 +144,21 @@ public class CreateIssueActivity extends ActionBarActivity {
                 tp = newpriority.getText().toString(),
                 td = description.getText().toString();
 
-        Utils.showToast(CreateIssueActivity.this, "Ticket Created successfully");
+        /*if(audioAttchment!=null){
+            Utils.showToast(getApplicationContext(), "Audio file is available");
+        }*/
+
+        zendeskConnector.createTicket(CreateIssueActivity.this,ts,td,imageAttchment, new ZendeskCallback() {
+            @Override
+            public void onSuccess(Object o) {
+                finish();
+            }
+
+            @Override
+            public void onError(ErrorResponse errorResponse) {
+
+            }
+        });
 
     }
 
