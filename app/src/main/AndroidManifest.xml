@@ -22,7 +22,8 @@
         <activity
             android:name=".ui.WelcomeActivity"
             android:noHistory="true"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,15 +45,18 @@
         <activity
             android:name=".ui.GetstartedActivity"
             android:label="@string/title_activity_getstarted"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.CreateIssueActivity"
-            android:label="@string/title_activity_create_issue" >
+            android:label="@string/title_activity_create_issue"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.Home"
-            android:label="@string/title_activity_home" >
+            android:label="@string/title_activity_home"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
