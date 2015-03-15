@@ -55,7 +55,7 @@ public class ZendeskConnector {
 
          Identity anonymousIdentity = new AnonymousIdentity.Builder()
                 .withEmailIdentifier(userDetails.getEmailId())
-                .withExternalIdentifier(userDetails.getEmailId())
+                .withExternalIdentifier("")
                 .withNameIdentifier(userDetails.getName())
                 .build();
 
@@ -99,7 +99,7 @@ public class ZendeskConnector {
         }
 
         CreateRequest createRequest = new CreateRequest();
-        createRequest.setEmail("pallavi.mp88@gmail.com");
+        createRequest.setEmail(userDetails.getEmailId());
         createRequest.setSubject(subject);
         createRequest.setDescription(desc);
         if(attachments!=null) {

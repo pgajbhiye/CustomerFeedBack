@@ -16,8 +16,9 @@
         android:textSize="@dimen/abc_text_size_headline_material"
         android:textIsSelectable="false"
         android:singleLine="false"
+        android:textStyle="bold"
         android:layout_marginBottom="15dp"
-        android:textColor="#ffffffff" />
+        android:textColor="#444" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -25,6 +26,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/caption"
-        android:textColor="#ffffffff" />
+        android:textColor="#777" />
 
 </LinearLayout>

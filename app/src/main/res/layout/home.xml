@@ -22,8 +22,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
-        android:paddingLeft="2dp"
-        android:paddingRight="2dp"
+        android:padding="5dp"
         android:background="#99000000"
         >
 
@@ -31,6 +30,8 @@
             android:id="@+id/logIssue"
             android:layout_width="fill_parent"
             android:layout_height="50dp"
+            android:background="@drawable/btn_info"
+            android:textColor="@color/white"
             android:text="@string/log_issue"
             />
 
