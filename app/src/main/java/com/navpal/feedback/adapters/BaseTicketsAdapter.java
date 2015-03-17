@@ -57,7 +57,7 @@ public class BaseTicketsAdapter extends BaseAdapter {
             holder = new ViewHolder();
 
             holder.date = (TextView) rowview.findViewById(R.id.ticketdate);
-            holder.ticketno = (TextView) rowview.findViewById(R.id.ticketid);
+            //holder.ticketno = (TextView) rowview.findViewById(R.id.ticketid);
             holder.subject = (TextView) rowview.findViewById(R.id.ticketsubject);
             holder.description = (TextView) rowview.findViewById(R.id.ticketdescription);
             //holder.status = (TextView) rowview.findViewById(R.id.ticketstatus);
@@ -68,7 +68,7 @@ public class BaseTicketsAdapter extends BaseAdapter {
 
         Request ticket = (Request)getItem(position);
         holder.date.setText(Utils.formatDate(ticket.getCreatedAt()));
-        holder.ticketno.setText(ticket.getPriority());
+        //holder.ticketno.setText(ticket.getPriority());
         holder.subject.setText(ticket.getSubject());
         holder.description.setText(ticket.getDescription());
        //holder.status.setText(Utils.trimStatus(ticket.getStatus()));
